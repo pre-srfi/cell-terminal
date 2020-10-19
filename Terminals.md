@@ -8,10 +8,6 @@ available; modern terminals can be variable in size, but always an integral
 number of rows and columns.  The operating system typically has some way of
 notifying an application when the size of a terminal it is using changes.
 
-## Issues
-
-1\. Bidirectional behavior.
-
 ## The model
 
 ### Terminals
@@ -38,7 +34,7 @@ The upper left corner is row 0, column 0, as is normally the case in Scheme.
 The characters present in a single location constitute a single
 Unicode default grapheme cluster.  In addition, the string may contain
 any number of 
-[Unicode control characters(https://en.wikipedia.org/wiki/Unicode_control_characters) and/or
+[Unicode control characters](https://en.wikipedia.org/wiki/Unicode_control_characters) and/or
 [ANSI escape sequences and control sequences](https://en.wikipedia.org/wiki/ANSI_escape_code)
 that change state.
 
@@ -61,6 +57,13 @@ location with a narrow or wide character, which occupy 1 or 2
 locations respectively.  Ambiguous characters are treated
 as narrow or wide depending on the *ambiguous* argument to `term-init`,
 but as narrow by default.
+
+## Bidirectional behavior
+
+Some terminals automatically reverse runs of RTL characters in a line
+on display, so that the grid is always in logical order.
+Some do not, and it's up to the application to do the reversing.
+We have no resolution for this problem.
 
 ## Terminal constructor
 
