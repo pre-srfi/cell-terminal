@@ -111,6 +111,19 @@ supposed to produce "bright" colors.
 
 ### 256-color support
 
+A 256-color palette for ANSI-style terminals was pioneered by XTerm.
+The palette is initialized to a 6x6x6 red-green-blue color cube plus
+24 shades of gray. Each axis of the cube scales linearly; it does not
+exploit nonlinearities in human color perception.
+
+XTerm allows users to remap the entire palette in its settings file,
+but this is rarely done. More significantly, the palette can be
+remapped at runtime by applications that send codes to the terminal.
+
+XTerm's 256-color codes have since been copied by most terminal
+emulators for Unix-like operating systems, and it has become the de
+facto standard for going beyond 16 colors.
+
 ### 24-bit color support
 
 ### Mouse support
