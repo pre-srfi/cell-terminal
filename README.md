@@ -20,6 +20,8 @@ SRFI to provide a widget toolkit for building text-based interfaces
 to providing a canvas, and there is much less agreement on how to best
 do it, it is left to other libraries.
 
+# Rationale
+
 ## Introduction
 
 For the purposes of this application, a terminal might be a physical terminal,
@@ -69,7 +71,6 @@ colors to as few as 8 colors if that's all they can support.
 Indeed, a monochrome terminal with reverse video can in effect
 support 2 colors, although the foreground and background colors are locked together.
 
-
 ### Asian width
 
 For the purposes of this SRFI,
@@ -80,7 +81,7 @@ locations respectively.  Ambiguous characters are treated
 as narrow or wide depending on the *ambiguous* argument to `term-init`,
 but as narrow by default.
 
-## Bidirectional behavior
+### Bidirectional behavior
 
 Some terminals automatically reverse runs of RTL characters in a line
 on display, so that the grid is always in logical order.
