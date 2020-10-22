@@ -33,7 +33,7 @@ The upper left corner is row 0, column 0, as is normally the case in Scheme.
 
 The characters present in a single location constitute a single
 Unicode default grapheme cluster.  In addition, the string may contain
-any number of 
+any number of
 [Unicode control characters](https://en.wikipedia.org/wiki/Unicode_control_characters) and/or
 [ANSI escape sequences and control sequences](https://en.wikipedia.org/wiki/ANSI_escape_code)
 that change state.
@@ -93,8 +93,8 @@ Returns `#t` if *t* can be resized by the user (as opposed to the program) and `
 
 ## Grid properties
 
-`(term-get `*t row column*`)`  
-`(term-get-fgcolor `*t row column*`)`  
+`(term-get `*t row column*`)`
+`(term-get-fgcolor `*t row column*`)`
 `(term-get-bgcolor `*t row column*`)`
 
 Returns the string/fgcolor/bgcolor corresponding
@@ -113,9 +113,9 @@ It is an error to set the last column of any row to a wide character.
 For legacy reasons, it is also an error to set the location in the last column
 of the last row.
 
-`(term-cursor-row `*t*`)`  
-`(term-cursor-set-row! `*t n*`)`  
-`(term-cursor-column `*t*`)`  
+`(term-cursor-row `*t*`)`
+`(term-cursor-set-row! `*t n*`)`
+`(term-cursor-column `*t*`)`
 `(term-cursor-set-column! `*t n*`)`
 
 Gets or sets the row/column at which the terminal's *cursor*
@@ -129,19 +129,19 @@ They may or may not do anything, depending on the external terminal.
 If a property is not retrievable, `#f` is returned.
 They may take effect without waiting for a `term-sync` to be performed.
 
-`(term-title `*t*`)`  
+`(term-title `*t*`)`
 `(term-set-title! `*t string*`)`
 
 Attempts to get or set the terminal title (typically displayed above the grid) to *string*.
 
-`(term-width `*t*`)`  
-`(term-set-width! `*t rows*`)`  
-`(term-height `*t*`)`  
+`(term-width `*t*`)`
+`(term-set-width! `*t rows*`)`
+`(term-height `*t*`)`
 `(term-set-height! `*t columns*`)`
 
 Attempts to get or set the width/height of both the external terminal and the grid.
 
-`(term-font `*t*`)`  
+`(term-font `*t*`)`
 `(term-set-font! `*t fontname*`)`
 
 Attempts to get or set the terminal's font,
@@ -149,15 +149,15 @@ which is named by a string.  It is an error to set a font that is
 neither monowidth nor (if it supports Asian wide characters)
 duowidth.
 
-`(term-fontsize `*t*`)`  
+`(term-fontsize `*t*`)`
 `(term-set-fontsize! `*t n*`)`
 
 Attempts to set or get the terminal's font size in points.
 The initial value is implementation-defined and may depend on the terminal.
 
-`(term-bold? `*t*`)`  
-`(term-set-bold! `*t name italic? bold?*`)`  
-`(term-italic? `*t*`)`  
+`(term-bold? `*t*`)`
+`(term-set-bold! `*t name italic? bold?*`)`
+`(term-italic? `*t*`)`
 `(term-set-italic?! `*t name italic? bold?*`)`
 
 Attempts to get or set the appearance of the specific font to be used.
@@ -170,7 +170,7 @@ For legacy reasons, the value of *bold?* may affect the fgcolor rather than the 
 The strings in the locations starting at *start-row* and *start-column* and
 extending to *end-row* and *end-column* inclusive are concatenated and returned.
 Color information is ignored.
-If *rect?* is false or absent, the contents of 
+If *rect?* is false or absent, the contents of
 the Z-shaped area
 that begins at *start-row* and *start-column*
 and extends to the end of *start-row*, followed
@@ -233,4 +233,3 @@ the characters or the terminal as a whole.
 Terminals can report events according to FIXME [the UI event SRFI](UiEvents.md).
 Calling `uievent-poll` will report events for terminals, possibly intermixed with
 other events.
-
