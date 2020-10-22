@@ -1,3 +1,25 @@
+# SRFI nnn: Cell terminal
+
+by ...
+
+# Status
+
+Early Draft
+
+# Abstract
+
+SRFI 205 enables low-level control of POSIX terminals. This SRFI
+provides a higher-level abstraction of a terminal as a grid of
+character cells. This abstraction is platform-independent, not
+depending on any POSIX-specific features; it is more similar to a
+portable graphics canvas, only with lower resolution.
+
+A still higher-level level abstraction could be built on top of this
+SRFI to provide a widget toolkit for building text-based interfaces
+(TUI) from ready-made elements. Since that functionality is orthogonal
+to providing a canvas, and there is much less agreement on how to best
+do it, it is left to other libraries.
+
 ## Introduction
 
 For the purposes of this application, a terminal might be a physical terminal,
