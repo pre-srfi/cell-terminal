@@ -92,6 +92,23 @@ We have no resolution for this problem.
 
 ### 16-color support
 
+ANSI terminals can change the color for forthcoming text with escape
+`[30m` for black , `[31m` for red, `[32m` for green, etc. These are
+foreground colors; background colors are `[40m`, `[41m`, `[42m`, etc.
+The standard colors are black, red, green, yellow, blue, magenta,
+cyan, white, in that numerical order. There are also "bright" and
+"dim" variants of each color, though these are not displayed in a
+consistent manner by different terminal emulators. It is extremely
+common for users to install themes that change the shades of these
+colors; sometimes the colors are changed to completely different ones.
+
+The Windows console API provides each character cell with the boolean
+flags `FOREGROUND_BLUE`, `FOREGROUND_GREEN`, `FOREGROUND_RED` as well
+as `BACKGROUND` variants of same. Different combinations of these
+flags produce black, red, green, yellow, blue, magenta, cyan, white.
+The `FOREGROUND_INTENSITY` and `BACKGROUND_INTENSITY` flags are
+supposed to produce "bright" colors.
+
 ### 256-color support
 
 ### 24-bit color support
