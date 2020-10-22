@@ -88,6 +88,18 @@ on display, so that the grid is always in logical order.
 Some do not, and it's up to the application to do the reversing.
 We have no resolution for this problem.
 
+## Survey of terminal emulator features
+
+### 16-color support
+
+### 256-color support
+
+### 24-bit color support
+
+### Mouse support
+
+# Specification
+
 ## Terminal constructor
 
 `(term-init `*which bgcolor* [*ambig*]`)`
