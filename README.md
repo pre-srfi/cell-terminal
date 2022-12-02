@@ -128,6 +128,11 @@ facto standard for going beyond 16 colors.
 
 ### Mouse support
 
+### Pixel graphics
+
+The VT330 hardware terminal supported sixel (six pixel) graphics which
+have recently been replicated in a few terminal emulators.
+
 # Specification
 
 ## Terminal constructor
