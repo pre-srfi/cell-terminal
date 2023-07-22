@@ -44,8 +44,11 @@ with the exception of wide East Asian characters,
 which occupy two horizontally consecutive locations.
 In addition, each location specifies a foreground color or *fgcolor*,
 for the grapheme itself,
-and a background color or *bgcolor*
-for the rest of the space in the location..
+a background color or *bgcolor*
+for the rest of the pixels in the location,
+and two *face* bits representing a regular, bold, italic, or bold italic font face.
+For legacy reasons, bold face affect the fgcolor rather than the font;
+similarly, italic face may underline instead.
 
 The grid is not physically displayed on the terminal until
 `term-sync` is invoked.
@@ -161,19 +164,21 @@ Returns `#t` if *obj* is a terminal object and `#f` otherwise.
 
 Returns `#t` if *t* can be resized by the user (as opposed to the program) and `#f` otherwise.
 
-## Grid properties
+## Cell properties
 
-`(term-get `*t row column*`)`
-`(term-get-fgcolor `*t row column*`)`
-`(term-get-bgcolor `*t row column*`)`
+`(term-get `*t row column*`)`  
+`(term-get-fgcolor `*t row column*`)`  
+`(term-get-bgcolor `*t row column*`)`  
+`(term-get-bold `*t row column*`)`  
+`(term-get-italic `*t row column*`)`
 
 Returns the string/fgcolor/bgcolor corresponding
 to the contents of the location in *t* at *row* and *column*.
 
-`(term-set! `*t row column string fgcolor bgcolor*`)`
+`(term-set! `*t row column string fgcolor bgcolor* [ *bold* [ *italic* ]]`)`
 
-Sets the location of *t* at *row* and *column* to the specified string
-and colors.  It is an error if *string* does not conform to the rules
+Sets the location of *t* at *row* and *column* to the specified string,
+colors, and face.  It is an error if *string* does not conform to the rules
 for what can appear at a single location.  If *string* contains a wide
 character, the location in the same row and the following column is
 automatically set to an empty string and the same colors as this location.'
@@ -183,23 +188,23 @@ It is an error to set the last column of any row to a wide character.
 For legacy reasons, it is also an error to set the location in the last column
 of the last row.
 
-`(term-cursor-row `*t*`)`
-`(term-cursor-set-row! `*t n*`)`
-`(term-cursor-column `*t*`)`
+## Terminal properties
+
+`(term-cursor-row `*t*`)`  
+`(term-cursor-set-row! `*t n*`)`  
+`(term-cursor-column `*t*`)`  
 `(term-cursor-set-column! `*t n*`)`
 
 Gets or sets the row/column at which the terminal's *cursor*
 (a visual indication of some sort) is currently placed.
 The cursor may change position as a result of calling `term-sync!`.
 
-## Terminal properties
-
 The following procedures get or set the state of the external terminal rather than the grid.
 They may or may not do anything, depending on the external terminal.
 If a property is not retrievable, `#f` is returned.
 They may take effect without waiting for a `term-sync` to be performed.
 
-`(term-title `*t*`)`
+`(term-title `*t*`)`  
 `(term-set-title! `*t string*`)`
 
 Attempts to get or set the terminal title (typically displayed above the grid) to *string*.
@@ -211,7 +216,7 @@ Attempts to get or set the terminal title (typically displayed above the grid) t
 
 Attempts to get or set the width/height of both the external terminal and the grid.
 
-`(term-font `*t*`)`
+`(term-font `*t*`)`  
 `(term-set-font! `*t fontname*`)`
 
 Attempts to get or set the terminal's font,
@@ -219,19 +224,11 @@ which is named by a string.  It is an error to set a font that is
 neither monowidth nor (if it supports Asian wide characters)
 duowidth.
 
-`(term-fontsize `*t*`)`
+`(term-fontsize `*t*`)`  
 `(term-set-fontsize! `*t n*`)`
 
 Attempts to set or get the terminal's font size in points.
 The initial value is implementation-defined and may depend on the terminal.
-
-`(term-bold? `*t*`)`
-`(term-set-bold! `*t name italic? bold?*`)`
-`(term-italic? `*t*`)`
-`(term-set-italic?! `*t name italic? bold?*`)`
-
-Attempts to get or set the appearance of the specific font to be used.
-For legacy reasons, the value of *bold?* may affect the fgcolor rather than the font.
 
 ## Reading and writing
 
@@ -294,7 +291,8 @@ and take it into account when implementing the current sync.
 
 The terminal is shut down.
 This may or may not have any external effect.
-It is an error to attempt
+After the terminal is shut down,
+it is an error to attempt
 to get or set properties, or to take actions, on either
 the characters or the terminal as a whole.
 
